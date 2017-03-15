@@ -31,6 +31,13 @@ export default class Contact extends React.Component {
   }
   render() {
     const mapToComponents = (data) => {
+      data.sort();
+      data = data.filter(
+        (contact) => {
+          return contact.name.toLowerCase()
+          .indexOf(this.state.keyword.toLowerCase()) > -1;
+        }
+      );
       return data.map((contact, i) => {
         return (<ContactInfo contact={contact} key={i} />);
       });
