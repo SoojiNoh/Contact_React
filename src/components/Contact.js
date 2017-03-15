@@ -27,11 +27,10 @@ export default class Contact extends React.Component {
     this.setState({
       keyword: e.target.value,
     });
-    console.log(this.state.keyword);
   }
   render() {
     const mapToComponents = (data) => {
-      data.sort();
+      data.sort((a,b) => { return a.name > b.name; });
       data = data.filter(
         (contact) => {
           return contact.name.toLowerCase()
