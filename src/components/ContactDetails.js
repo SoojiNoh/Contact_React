@@ -15,6 +15,7 @@ export default class ContactDetails extends React.Component {
       <div>
         <h2>Details</h2>
         {this.props.isSelected ? details : blank}
+        <button onClick={this.props.onRemove}>Remove</button>
       </div>
     );
   }
@@ -25,4 +26,10 @@ ContactDetails.defaultProps = {
     name: '',
     phone: '',
   },
+  onRemove: () => {console.log('onRemove not defined'); },
 };
+
+ContactDetails.propTypes = {
+  contact: React.PropTypes.object,
+  onRemove: React.PropTypes.func,
+}
