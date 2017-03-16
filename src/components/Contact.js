@@ -53,6 +53,9 @@ export default class Contact extends React.Component {
   }
 
   handleRemove() {
+    if (this.state.selectedKey < 0) {
+      return;
+    }
     this.setState({
       contactData: update(this.state.contactData,
         { $splice: [[this.state.selectedKey, 1]] },

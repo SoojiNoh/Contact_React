@@ -11,7 +11,7 @@ export default class ContactDetails extends React.Component {
     );
     const blank = (<div>Not Selected</div>);
 
-    return(
+    return (
       <div>
         <h2>Details</h2>
         {this.props.isSelected ? details : blank}
