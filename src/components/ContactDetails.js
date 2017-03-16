@@ -33,6 +33,7 @@ export default class ContactDetails extends React.Component {
     this.setState(nextState);
   }
 
+
   render() {
     const details = (
       <div>
