@@ -32,6 +32,23 @@ export default class Contact extends React.Component {
     this.handleCreate = this.handleCreate.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
+    this.handleReset = this.handleReset.bind(this);
+  }
+
+  componentWillMount() {
+    const contactData = localStorage.contactData;
+
+    if (contactData) {
+      this.setState({
+        contactData: JSON.parse(contactData),
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (JSON.stringify(prevState.contactData) !== JSON.stringify(this.state.contactData)) {
+      localStorage.contactData = JSON.stringify(this.state.contactData);
+    }
   }
 
   handleChange(e) {
@@ -77,6 +94,13 @@ export default class Contact extends React.Component {
     });
   }
 
+  handleReset() {
+    if (confirm('Reset ContactInfo?')) {
+      localStorage.clear();
+      window.location.reload();
+    }
+  }
+
   render() {
     const mapToComponents = (data) => {
       data.sort((a, b) => { return a.name > b.name; });
@@ -109,6 +133,7 @@ export default class Contact extends React.Component {
         <ContactCreate
           onCreate={this.handleCreate}
         />
+      <button onClick={this.handleReset}>Reset</button>
       </div>
     );
   }
